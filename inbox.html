@@ -281,6 +281,7 @@ let decrypting;
 let selected;
 
 function encrypt () {
+    clearInterval(decrypting);
     status.style.color = "yellow";
     let newstring = "Encrypting";
     percentage = Number((percentage + 0.37).toFixed(2));
@@ -295,6 +296,7 @@ function encrypt () {
 }
 
 function decrypt () {
+    clearInterval(encrypting);
     status.style.color = "yellow";
     let newstring = "Encrypting";
     percentage = Number((percentage - 0.37).toFixed(2));
@@ -346,6 +348,6 @@ function extractTitle(html) {
     return html.slice(html.indexOf("title")+7, html.indexOf("date")+3);
 }
 function extractDate(html) {
-    return html.slice(html.indexOf("date")+43, html.length);
+    return html.slice(html.indexOf("date")+43, html.indexOf("from"));
 }
 </script>
