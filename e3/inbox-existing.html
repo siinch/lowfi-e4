@@ -1,12 +1,12 @@
 <div id="navbar"> </div>
 <input type="text" id="search" placeholder="Search">
 <button id="settings">Settings</button>
-<button onclick="window.location.href='logintwopasswords.html';" id="Logout">Logout</button>
+<button onclick="window.location.href='login-existing.html';" id="Logout">Logout</button>
 
 <div id="flagbar"> </div><br>
 
 <div id="foldercol"> </div><br>
-<h1 id="logo">E4</h1><br>
+<h1 id="logo">E3</h1><br>
 <button id="folder">Compose</button>
 <select id="select">
     <option >Select</option>
@@ -37,10 +37,13 @@
     <option >Spam</option>
     <option >Trash</option>
 </select>
-<button id="reset" onclick="reset()">Change Encryption Password</button>
 <select id="mode">
     <option onclick="enable()">Encryption: On</option>
     <option onclick="disable()">Encryption: Off</option>
+</select>
+<select id="devices">
+    <option>E3 Devices</option>
+    <option>Original Device</option>
 </select>
 <button id="status">Status</button><br><br>
 
@@ -227,13 +230,12 @@ body {
     color: dimgrey;
     width: 60px;
 }
-#reset {
+#devices {
     position: fixed;
-    left: 440px;
+    left: 435px;
     width: 140px;
     background: rgb(26, 26, 26);
     color: dimgrey;
-    font-size: 9px;
 }
 #mode {
     position: fixed;
@@ -289,6 +291,14 @@ let encrypting = setInterval(encrypt, 10);
 let decrypting;
 let selected;
 
+let verification = setInterval(verify, 30000);
+
+function verify () {
+    clearInterval(verification);
+    prompt("New E3 device detected. Click 'ok' to begin verifying your new device.")
+    window.location.href='verifystep3.html';
+}
+
 function encrypt () {
     clearInterval(decrypting);
     status.style.color = "yellow";
@@ -319,24 +329,8 @@ function decrypt () {
     }
 }
 
-function reencrypt () {
-    clearInterval(encrypting);
-    status.style.color = "yellow";
-    let newstring = "Encrypting";
-    percentage = Number((percentage - 0.37).toFixed(2));
-    newstring = " " + percentage + "%"
-    status.innerHTML = "Encrypted: " + percentage + "%";
-    
-    if(percentage < 0) {
-        status.innerHTML = "Encrypted: 0%";
-        clearInterval(decrypting);
-        encrypting = setInterval(encrypt, 10);
-        status.style.color = "red";
-    }
-}
-
 function disable() {
-    if(prompt('Enter your encryption password to disable encryption') !== null) {
+    if(prompt('Are you sure you wish to disable encryption?') !== null) {
         clearInterval(encrypting);
         clearInterval(decrypting);
         decrypting = setInterval(decrypt, 10)
@@ -344,7 +338,7 @@ function disable() {
 }
 
 function enable() {
-    if(prompt('Enter your encryption password to enable encryption') !== null) {
+    if(alert('Are you sure you wish to enable encryption?') !== null) {
         clearInterval(encrypting);
         clearInterval(decrypting);
         encrypting = setInterval(encrypt, 10)
@@ -374,10 +368,5 @@ function extractTitle(html) {
 }
 function extractDate(html) {
     return html.slice(html.indexOf("date")+43, html.indexOf("from"));
-}
-function reset() {
-    prompt("Please provide your current encryption password:")
-    prompt("Please provide your new encryption password:")
-    decrypting = setInterval(reencrypt, 10);
 }
 </script>
