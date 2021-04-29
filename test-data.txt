@@ -3,7 +3,9 @@ Fake login credentials for usability test
 email address:		 test@email.com
 email password:		 Test_1234!
 
+new email password:	 New_1234!
 
 For E4 only:
 
 encryption password:	 Encrypt_4321!
+new encryption password: Reencrypt_4321!

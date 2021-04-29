@@ -287,7 +287,7 @@ body {
 let status = document.getElementById("status");
 let body = document.getElementById("body");
 let percentage = 0;
-let encrypting = setInterval(encrypt, 10);
+let encrypting = setInterval(encrypt, 200);
 let decrypting;
 let selected;
 
@@ -333,7 +333,7 @@ function disable() {
     if(prompt('Are you sure you wish to disable encryption?') !== null) {
         clearInterval(encrypting);
         clearInterval(decrypting);
-        decrypting = setInterval(decrypt, 10)
+        decrypting = setInterval(decrypt, 200)
     }
 }
 
@@ -341,7 +341,7 @@ function enable() {
     if(alert('Are you sure you wish to enable encryption?') !== null) {
         clearInterval(encrypting);
         clearInterval(decrypting);
-        encrypting = setInterval(encrypt, 10)
+        encrypting = setInterval(encrypt, 200)
     }
 }
 
