@@ -1,0 +1,24 @@
+<div style="margin: 100px">
+    <h1 id="heading">Decrypting mailbox</h1>
+    
+</div>
+
+<style>
+ body {
+    background: rgb(26, 26, 26);
+    color: rgb(246, 246, 246);
+}
+</style>
+
+<script>
+
+    function load() {
+        document.getElementById("heading").innerHTML += ".";
+    }
+    function toinbox() {
+        window.location.href='inbox.html';
+    }
+    setInterval(load, 900);
+    setInterval(toinbox, 5000);
+
+</script>
